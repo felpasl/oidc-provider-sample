@@ -1,0 +1,18 @@
+{
+  "name": "oidc-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "start": "concurrently \"pnpm start:provider\" \"sleep 2 && pnpm start:client\" \"sleep 3 && pnpm start:resource\"",
+    "start:provider": "pnpm --filter identity-provider run build && pnpm --filter identity-provider run start",
+    "start:client": "pnpm --filter client-app run build && pnpm --filter client-app run start",
+    "start:resource": "pnpm --filter resource-server run build && pnpm --filter resource-server run start"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.2",
+    "concurrently": "^9.2.1",
+    "lerna": "^8.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
